@@ -30,6 +30,7 @@ public class Worker1 {
         final Channel channel = connection.createChannel();
 
         // 声明队列，主要为了防止消息接收者先运行此程序，队列还不存在时创建队列。
+        boolean durable = true;
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
         channel.basicQos(1);//保证一次只分发一个
@@ -50,10 +51,10 @@ public class Worker1 {
                 } catch (InterruptedException e) {
                 } finally {
                     System.out.println(" [x] Done! at " +new Date().toLocaleString());
-                    //channel.basicAck(envelope.getDeliveryTag(), false);
+                    channel.basicAck(envelope.getDeliveryTag(), false);
                 }
             }
         };
-        channel.basicConsume(QUEUE_NAME, true, consumer);
+        channel.basicConsume(QUEUE_NAME, false, consumer);
     }
 }

@@ -25,7 +25,7 @@ public class MsgSender {
 
     public static void main(String[] args) throws IOException, TimeoutException {
         /**
-         * 创建连接连接到MabbitMQ
+         * 创建连接连接到RabbitMQ
          */
         ConnectionFactory factory = new ConnectionFactory();
         // 设置MabbitMQ所在主机ip或者主机名

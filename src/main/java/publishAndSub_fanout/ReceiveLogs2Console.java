@@ -33,7 +33,6 @@ public class ReceiveLogs2Console {
         // 声明一个随机队列
         String queueName = channel.queueDeclare().getQueue();
         channel.queueBind(queueName, EXCHANGE_NAME, "");
-        System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
         // 创建队列消费者
         final Consumer consumer = new DefaultConsumer(channel) {

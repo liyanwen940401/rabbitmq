@@ -36,9 +36,8 @@ public class ReceiveLogs2File {
         channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
         // 声明一个随机队列
         String queueName = channel.queueDeclare().getQueue();
+        //告诉转发器转发消息到队列。Binding就是关联转发器和队列
         channel.queueBind(queueName, EXCHANGE_NAME, "");
-        System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
-
         // 创建队列消费者
         final Consumer consumer = new DefaultConsumer(channel) {
             @Override
